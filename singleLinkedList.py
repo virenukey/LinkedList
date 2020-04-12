@@ -136,10 +136,36 @@ class LinkedList():
             print current.getData()
             current = current.getNext()
 
+    def swapNodes(self, node1, node2):
+        if node1 == node2:
+            return
 
+        if not self.search(node1) or not self.search(node2):
+            print "One of the node is invalid"
+            return
 
+        current1 = self.head
+        previous1 = None
 
+        while current1 and current1.getData() != node1:
+            previous1 = current1
+            current1 = current1.getNext()
 
+        current2 = self.head
+        previous2 = None
 
+        while current2 and current2.getData() != node2:
+            previous2 = current2
+            current2 = current2.getNext()
 
+        if previous1:
+            previous1.setNext(current2)
+        else:
+            self.head = current2
 
+        if previous2:
+            previous2.setNext(current1)
+        else:
+            self.head = current1
+
+        current1.next, current2.next = current2.next, current1.next
